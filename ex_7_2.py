@@ -8,11 +8,11 @@ class Employee:
 
 
 class Manager(Employee):
-    def __init__(self, name, id_number, deportment):
+    def __init__(self, name, id_number, department):
         super().__init__(name, id_number)
-        self.deportment = deportment
+        self.department = department
     def manage_project(self):
-        return f'Сотрудник в должности менеджера, отвечающий за: {self.deportment}. '
+        return f'Сотрудник в должности менеджера, отвечающий за: {self.department}. '
 
 
 class Technician(Employee):
@@ -24,10 +24,9 @@ class Technician(Employee):
 
 
 class TechManager(Manager, Technician):
-    def __init__(self, name, id_number,deportment, specialization):
-        Employee.__init__(self, name, id_number)
-        self.deportment = deportment
-        self.specialization = specialization
+    def __init__(self, name, id_number,department, specialization):
+        Technician.__init__(self, name, id_number, specialization)
+        self.department = department
         self.list = []
     def add_employee(self, man):
         self.list.append(man)
@@ -44,8 +43,8 @@ print(emp1.get_info())
 print(emp2.manage_project())
 print(emp3.perform_maintenance())
 
-emp4.add_employee(emp1)
-emp4.add_employee(emp2)
-emp4.add_employee(emp3)
+emp4.add_employee('Сергей')
+emp4.add_employee('Валентин')
+emp4.add_employee('Вова')
 
 print(emp4.get_tean_info())
